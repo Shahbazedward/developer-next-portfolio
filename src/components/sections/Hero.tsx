@@ -12,6 +12,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import { useIsMobile } from "@/hooks/useIsMobile";
+
 const EnergyCore = dynamic(() => import("@/components/three/EnergyCore"), {
   ssr: false,
 
@@ -23,6 +25,7 @@ const EnergyCore = dynamic(() => import("@/components/three/EnergyCore"), {
 });
 
 export default function Hero() {
+  const isMobile = useIsMobile();
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -247,7 +250,15 @@ export default function Hero() {
 
         <div className="hero__core-glow" />
 
-        <EnergyCore />
+        {!isMobile ? (
+  <EnergyCore />
+) : (
+  <div className="hero__mobile-visual">
+    <div className="hero__mobile-core">
+      &lt;/&gt;
+    </div>
+  </div>
+)}
       </motion.div>
 
       <div className="hero__scroll" aria-hidden="true">

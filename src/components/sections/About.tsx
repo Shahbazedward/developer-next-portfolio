@@ -8,6 +8,7 @@ import {
   Rocket,
   Sparkles,
 } from "lucide-react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const TechMonolith = dynamic(
   () => import("@/components/three/TechMonolith"),
@@ -40,6 +41,7 @@ const technologies = [
   "PostgreSQL",
   "AI APIs",
 ];
+const isMobile = useIsMobile();
 
 export default function About() {
   return (
@@ -168,7 +170,15 @@ export default function About() {
           <div className="about-visual__glow" />
 
           <div className="about-visual__canvas">
-            <TechMonolith />
+            {!isMobile ? (
+  <EnergyCore />
+) : (
+  <div className="hero__mobile-visual">
+    <div className="hero__mobile-core">
+      &lt;/&gt;
+    </div>
+  </div>
+)}
           </div>
 
           <div className="about-tech about-tech--one">
